@@ -32,13 +32,13 @@ class ProfilController extends AbstractController
         if ($profilForm->isSubmitted() && $profilForm->isValid()){
             $entityManager->persist($profil);
             $entityManager->flush();
+            return new Response ('profil crée');
         }
     
 
         return $this->renderForm('profil/add.html.twig', [
             'profilForm' => $profilForm,
             "controller_name" => " Ajouter un nouveau profil",
-        ]);
-
+        ]); 
     }
 }
