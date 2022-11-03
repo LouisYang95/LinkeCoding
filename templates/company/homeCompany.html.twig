@@ -19,7 +19,7 @@
 <div class="container-xl">
     <div class="header">
         <p class="title"> Hello welcome to LinkeCoding, if you are to add a job offer click on the button</p>
-        <button id="btn-create-company" class="btn btn-info">Create a company</button>
+        <a href='company/new'> <button class="btn btn-info">Create a company</button></a>
     </div>
     <ul class="list-group">
         
@@ -33,14 +33,8 @@
         </li>
         {% endfor%}
     <ul>
-
     </div>
 {% endblock %}
 
-{% block javascripts%}
-    <script>
-        document.getElementById("btn-create-company").addEventListener("click", function(){
-            window.location.href = "{{ path('create_company') }}";
-        });
-    </script>
+{% block javascripts %}
 {% endblock %}

@@ -20,7 +20,7 @@ class CompanyController extends AbstractController
     {
         $company = $doctrine->getRepository(Company::class)->findAll();
         // dd($company);
-        return $this->renderForm('company/home.html.twig', [
+        return $this->renderForm('company/homeCompany.html.twig', [
             'companies' => $company,
         ]);
     }
