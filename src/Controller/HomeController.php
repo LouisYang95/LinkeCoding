@@ -21,12 +21,9 @@ class HomeController extends AbstractController
     {
         $profils = $doctrine->getRepository(Profil::class)->findAll();
 
-
-
-        return $this->render('base.html.twig',[
+        return $this->render('/profil/homepage.html.twig',[
             'profils' => $profils,
 
         ]);
-
     }
 }

@@ -19,15 +19,15 @@ class ProfilType extends AbstractType
             ->add('career')
             ->add('skillsProfil', ChoiceType::class, [
                 'choices' => [
-                    'Html' =>1,
-                    'Css' =>2,
-                    'Javascript' =>3,
-                    'ReactJs' =>4,
-                    'Flutter' =>6,
-                    'Symfony' =>7,
-                    'Laravel' =>8,
-                    'SwiftUi' =>10,
-                    'Php' =>11,
+                    'HTML' => 'HTML',
+                    'CSS' => 'CSS',
+                    'JavaScript' => 'JavaScript',
+                    'ReactJs' => 'ReactJS',
+                    'Flutter' => 'Flutter',
+                    'Symfony' => 'Symfony',
+                    'Laravel' => 'Laravel',
+                    'SwiftUi' => 'SwiftUi',
+                    'PHP' => 'PHP',
                 ]
             ]
             )

@@ -32,7 +32,7 @@ class ProfilController extends AbstractController
         if ($profilForm->isSubmitted() && $profilForm->isValid()){
             $entityManager->persist($profil);
             $entityManager->flush();
-            return new Response ('profil crée');
+
         }
     
 
