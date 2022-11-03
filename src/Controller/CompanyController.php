@@ -2,26 +2,26 @@
 
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
-use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Component\HttpFoundation\Request;
-
 use App\Entity\Company;
 use App\Form\CreateCompanyType;
+use Doctrine\ORM\EntityManagerInterface;
+
+use Doctrine\Persistence\ManagerRegistry;
+
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class CompanyController extends AbstractController
 {
-    #[Route('/company', name: 'app_company')]
-    public function new(): Response
+    #[Route('/company', name: 'company')]
+    public function show(ManagerRegistry $doctrine): Response
     {
-        $company = new Company();
-
-        $form = $this->createForm(CreateCompanyType::class, $company);
-        
+        $company = $doctrine->getRepository(Company::class)->findAll();
+        // dd($company);
         return $this->renderForm('company/home.html.twig', [
-            'form' => $form,
+            'companies' => $company,
         ]);
     }
     

@@ -1,17 +1,23 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>My Webpage</title>
-    </head>
-    <body>
+
+
+{% block body%}
+
         <h1>My Webpage</h1>
         <div>
             <p> Hello welcome to LinkeCoding, if you are to add a job_offer click on this button</p>
-            <button id="btn1">Create a company</button>
+            <button id="btn1">Go to company</button>
         </div>
         <div>
             <p> Hello welcome to LinkeCoding, if you are to create an account click on this button</p>
-            <button>Create a user</button>
+            <button id="btn2">Create a user</button>
         </div>
-    </body>
-</html>
+{% endblock%}
+
+{% block javascripts %}
+    <script>
+        document.getElementById("btn1").addEventListener("click", function(){
+            window.location.href = "{{ path('company') }}";
+        });
+
+    </script>
+{% endblock %}

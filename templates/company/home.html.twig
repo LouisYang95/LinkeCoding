@@ -1,5 +1,46 @@
 {% extends 'base.html.twig'%}
 
+
+{% block stylesheets%}
+    <style>
+        .header{
+            margin: 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .title{ 
+            font-size: 2em;
+            }
+    </style>
+{% endblock %}
+
 {% block body%}
-    <p> Hello </p>
+<div class="container-xl">
+    <div class="header">
+        <p class="title"> Hello welcome to LinkeCoding, if you are to add a job offer click on the button</p>
+        <button id="btn-create-company" class="btn btn-info">Create a company</button>
+    </div>
+    <ul class="list-group">
+        
+        {% for company in companies%}
+        <li class="list-group-item d-flex justify-content-between align-items-start">
+            <div class="ms-2 me-auto" >
+                <div class="fw-bold"> {{company.companyName}} </div>
+                {{company.companyDescription}}
+            </div>
+
+        </li>
+        {% endfor%}
+    <ul>
+
+    </div>
+{% endblock %}
+
+{% block javascripts%}
+    <script>
+        document.getElementById("btn-create-company").addEventListener("click", function(){
+            window.location.href = "{{ path('create_company') }}";
+        });
+    </script>
 {% endblock %}
