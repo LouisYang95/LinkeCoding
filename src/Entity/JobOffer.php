@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\JobOfferRepository;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: JobOfferRepository::class)]
@@ -15,7 +16,7 @@ class JobOffer
 
     #[ORM\ManyToOne]
     #[ORM\JoinColumn(nullable: false)]
-    private ?company $companyName = null;
+    private ?Company $companyName = null;
 
     #[ORM\Column(length: 255)]
     private ?string $offerName = null;
@@ -23,8 +24,8 @@ class JobOffer
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $descriptionOffer = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $offerSkills = null;
+    #[ORM\Column(type: Types::ARRAY, nullable: true)]
+    private array $offerSkills = [];
 
     public function getId(): ?int
     {
@@ -67,7 +68,7 @@ class JobOffer
         return $this;
     }
 
-    public function getOfferSkills(): ?string
+    public function getOfferSkills(): array
     {
         return $this->offerSkills;
     }
