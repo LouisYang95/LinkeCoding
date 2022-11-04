@@ -17,7 +17,7 @@ class ProfilType extends AbstractType
             ->add('nameProfil')
             ->add('first_name')
             ->add('career')
-            ->add('skillsProfil', ChoiceType::class, [
+            ->add('profilSkill', ChoiceType:: class,[
                 'choices' => [
                     'HTML' => 'HTML',
                     'CSS' => 'CSS',
@@ -29,8 +29,8 @@ class ProfilType extends AbstractType
                     'SwiftUi' => 'SwiftUi',
                     'PHP' => 'PHP',
                 ]
-            ]
-            )
+            ])
+
             ->add("submit", SubmitType::class)
         ;
     }

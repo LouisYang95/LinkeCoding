@@ -15,7 +15,7 @@ class JobOffer
     private ?int $id = null;
 
     #[ORM\ManyToOne(inversedBy: 'jobOffers')]
-    private ?Company $company = null;
+    private ?Company $companyName = null;
 
     #[ORM\Column(length: 255)]
     private ?string $offerName = null;
@@ -24,21 +24,24 @@ class JobOffer
     private ?string $descriptionOffer = null;
 
     #[ORM\Column(type: Types::ARRAY, nullable: true)]
-    private array $offerSkill = [];
+    private array $offerSkills = [];
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $skillOffer = null;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getCompany(): ?Company
+    public function getCompanyName(): ?Company
     {
-        return $this->company;
+        return $this->companyName;
     }
 
-    public function setCompany(?Company $company): self
+    public function setCompanyName(?Company $companyName): self
     {
-        $this->company = $company;
+        $this->companyName = $companyName;
 
         return $this;
     }
@@ -67,14 +70,26 @@ class JobOffer
         return $this;
     }
 
-    public function getOfferSkill(): array
+    public function getOfferSkills(): array
     {
-        return $this->offerSkill;
+        return $this->offerSkills;
     }
 
-    public function setOfferSkill(?array $offerSkill): self
+    public function setOfferSkills(?array $offerSkills): self
     {
-        $this->offerSkill = $offerSkill;
+        $this->offerSkills = $offerSkills;
+
+        return $this;
+    }
+
+    public function getSkillOffer(): ?string
+    {
+        return $this->skillOffer;
+    }
+
+    public function setSkillOffer(?string $skillOffer): self
+    {
+        $this->skillOffer= $skillOffer;
 
         return $this;
     }
