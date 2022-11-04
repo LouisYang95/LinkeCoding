@@ -12,6 +12,12 @@
         .title{ 
             font-size: 2em;
             }
+        .btnContainer{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 50px;
+        }
     </style>
 {% endblock %}
 
@@ -29,10 +35,12 @@
                 <div class="fw-bold"> {{company.companyName}} </div>
                 {{company.companyDescription}}
             </div>
-
         </li>
         {% endfor%}
     <ul>
+        <div class="btnContainer">
+            <a href='/'> <button class="btn btn-success">Back Home</button></a>
+        </div>
     </div>
 {% endblock %}
 

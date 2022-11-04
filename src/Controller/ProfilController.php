@@ -6,6 +6,7 @@ namespace App\Controller;
 use App\Entity\Profil;
 use App\Form\ProfilType;
 use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -13,15 +14,17 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class ProfilController extends AbstractController
 {
-    #[Route('/profil', name: 'profil')]
-    public function index(): Response
+    #[Route('/profile', name: 'profile')]
+    public function index(ManagerRegistry $doctrine): Response
     {
+        $profils = $doctrine->getRepository(Profil::class)->findAll();
+
         return $this->render('profil/index.html.twig', [
-            'controller_name' => 'ProfilController',
+            'profils' => $profils,
         ]);
     }
 
-    #[Route('/profil/new', name: 'new_profil')]
+    #[Route('/profile/new', name: 'new_profil')]
     public function addProfil (Request $request, EntityManagerInterface $entityManager): Response
     {
         $profil = new Profil();
@@ -33,6 +36,7 @@ class ProfilController extends AbstractController
             $entityManager->persist($profil);
             $entityManager->flush();
 
+            return $this->redirectToRoute('profile');
         }
     
 

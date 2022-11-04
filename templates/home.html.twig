@@ -1,18 +1,37 @@
 {% extends 'base.html.twig'%}
 
+{% block stylesheets %}
+    <style>
+        .mainContainer {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .itemContainer{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .btn{
+            margin: 10px;
+        }
+    </style>
+{% endblock %}
 
-{% block body%}
-
+{% block body %}
+    <div class='mainContainer'>
         <h1>My Webpage</h1>
-        <div>
+        <div class="itemContainer">
             <p> Hello welcome to LinkeCoding, if you are to add a job_offer click on this button</p>
             <a href="/company"> <button class="btn btn-success">Go to company</button></a>
-           
         </div>
-        <div>
+        <div class="itemContainer">
             <p> Hello welcome to LinkeCoding, if you are to create an account click on this button</p>
-            <button id="btn2">Create a user</button>
+            <a href="/profile"> <button class="btn btn-success">Go to user</button> </a>
         </div>
+    </div>
 {% endblock%}
 
 {% block javascripts %}

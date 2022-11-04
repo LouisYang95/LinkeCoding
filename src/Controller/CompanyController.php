@@ -20,7 +20,7 @@ class CompanyController extends AbstractController
     {
         $company = $doctrine->getRepository(Company::class)->findAll();
         // dd($company);
-        return $this->renderForm('company/homeCompany.html.twig', [
+        return $this->render('company/homeCompany.html.twig', [
             'companies' => $company,
         ]);
     }
@@ -37,7 +37,7 @@ class CompanyController extends AbstractController
             $entityManager->persist($company);
             $entityManager->flush();
 
-            return $this->redirectToRoute('homepage');
+            return $this->redirectToRoute('company');
         }
 
         return $this->renderForm('company/new.html.twig', [

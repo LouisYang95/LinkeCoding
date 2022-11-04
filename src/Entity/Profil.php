@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\ProfilRepository;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ProfilRepository::class)]
@@ -13,7 +14,7 @@ class Profil
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 244)]
+    #[ORM\Column(length: 255)]
     private ?string $nameProfil = null;
 
     #[ORM\Column(length: 255)]
@@ -22,8 +23,8 @@ class Profil
     #[ORM\Column(length: 255)]
     private ?string $career = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $skillsProfil = null;
+    #[ORM\Column(type: Types::ARRAY, nullable: true)]
+    private array $skillsProfil = [];
 
     public function getId(): ?int
     {
@@ -66,12 +67,12 @@ class Profil
         return $this;
     }
 
-    public function getSkillsProfil(): ?string
+    public function getSkillsProfil(): array
     {
         return $this->skillsProfil;
     }
 
-    public function setSkillsProfil(string $skillsProfil): self
+    public function setSkillsProfil(?array $skillsProfil): self
     {
         $this->skillsProfil = $skillsProfil;
 
