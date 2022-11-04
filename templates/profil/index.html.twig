@@ -28,7 +28,10 @@
                     <div class="fw-bold"> Last Name : {{profil.nameProfil}} </div>
                     <div> First Name : {{profil.firstName}} </div>
                     <div> Career : {{profil.career}} </div>
-                    <div> Skills : {{profil.skillsProfil}} </div>
+                    <div> Skill : </div>
+                    {% for skill in profil.skillsProfil%}
+                        {{skill}}
+                    {% endfor %}
                 </div>
             </li>
         {% endfor%}
