@@ -19,17 +19,17 @@ class OfferController extends AbstractController
     public function index(ManagerRegistry $doctrine): Response
     {
         $offers = $doctrine->getRepository(JobOffer::class)->findAll();
-        // $companies = $doctrine->getRepository(Company::class)->findAll();
-        // foreach($companies as $company){
-        //     foreach($offers as $offer){
-        //         if($offer->getCompanyName() == $company->getId()){
-        //             $offerCompany = $company->getCompanyName;
-        //         }
-        //     }
-        // }
+        $companies = $doctrine->getRepository(Company::class)->findAll();
+        foreach($companies as $company){
+                // dd($company->getId());
+                if($company->getId()){
+                    $companyName = $company->setCompanyName($company->getCompanyName());
+                }
+
+        }
         return $this->render('offer/index.html.twig', [
             'offers' => $offers,
-            'company' => $offerCompany
+            'company' => $companyName
         ]);
 
 
