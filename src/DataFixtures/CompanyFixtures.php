@@ -17,5 +17,27 @@ class CompanyFixtures extends Fixture
         
         $manager->persist($company);
         $manager->flush();
+
+        $company1 = new Company;
+        $company1->setCompanyName("ABED CORP");
+        $company1->setCompanyDescription("This is the company of ABED, the ABED Corporation");
+        
+        $manager->persist($company1);
+        $manager->flush();
+
+        
+        $company2 = new Company;
+        $company2->setCompanyName("ABED CORP");
+        $company2->setCompanyDescription("This is the company of ABED, the ABED Corporation");
+        
+        $manager->persist($company2);
+        $manager->flush();
+        
+        $company1 = new Company;
+        $company1->setCompanyName("ABED CORP");
+        $company1->setCompanyDescription("This is the company of ABED, the ABED Corporation");
+        
+        $manager->persist($company1);
+        $manager->flush();
     }
 }

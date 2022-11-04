@@ -20,17 +20,16 @@ class OfferController extends AbstractController
     {
         $offers = $doctrine->getRepository(JobOffer::class)->findAll();
         $companies = $doctrine->getRepository(Company::class)->findAll();
-        // foreach($companies as $company){
-        //     foreach($offers as $offer){
-        //         $companyId = $offer->getCompanyName();
-        //         if((int)$companyId == (int)$company->getId()){
-        //             $offerCompany = $company->getCompanyName;
-        //         }
-        //     }
-        // }
+        foreach($companies as $company){
+            foreach($offers as $offer){
+                if($offer->getCompanyName() == $company->getId()){
+                    $offerCompany = $company->getCompanyName;
+                }
+            }
+        }
         return $this->render('offer/index.html.twig', [
             'offers' => $offers,
-            // 'company' => $offerCompany
+            'company' => $offerCompany
         ]);
 
 
@@ -39,15 +38,21 @@ class OfferController extends AbstractController
     #[Route('/offer/new', name: 'new_offer')]
     public function addOffre(Request $request, EntityManagerInterface $entityManager): Response
     {
+        $companies = $entityManager->getRepository(Company::class)->findAll();
+        $companiesName=[];
+        foreach($companies as $company){
+            $companiesName[$company->getCompanyName()] = $company->getId();
+        }
         $offer = new JobOffer();
-
-        $offerForm = $this->createForm(OffreType::class, $offer);
+        $offerForm = $this->createForm(OffreType::class, $offer,[
+            'empty_data'=> $companiesName
+        ]);
         $offerForm->handleRequest($request);
+
 
         if ($offerForm->isSubmitted() && $offerForm->isValid()) {
             $entityManager->persist($offer);
             $entityManager->flush();
-
             return $this->redirectToRoute('app_offer');
         }
 
