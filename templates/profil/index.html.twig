@@ -1,0 +1,44 @@
+{% extends 'base.html.twig'%}
+
+
+
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+    h1{
+        text-align: center;
+    }
+    .btn{
+        margin: 10px;
+    }
+    .containerLastPart{
+        display: flex;
+        justify-content: center;
+    }
+</style>
+
+<div class="example-wrapper">
+    <h1 >Hello ! There is a list of profil : </h1>
+    <ul class="list-group">
+        {% for profil in profils%}
+            <li class="list-group-item d-flex justify-content-between align-items-start">
+                <div class="ms-2 me-auto" >
+                    <div class="fw-bold"> Last Name : {{profil.nameProfil}} </div>
+                    <div> First Name : {{profil.firstName}} </div>
+                    <div> Career : {{profil.career}} </div>
+                    <div> Skill : {{profil.profilSkill}}</div>
+                    {% for skill in profil.skillsProfil%}
+                            
+                    {% endfor %}
+                </div>
+            </li>
+        {% endfor%}
+    </ul>
+    <div class="containerLastPart">
+        <a href='/profile/new'> <button class="btn btn-info"> Create an user</button> </a>
+        <a href='/'> <button class="btn btn-success"> Back to home </button> </a>
+    </div>
+</div>
+{% endblock %}
