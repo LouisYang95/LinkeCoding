@@ -15,13 +15,13 @@ class Profil
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $nameProfil = null;
+    private ?string $nameProfil = '';
 
     #[ORM\Column(length: 255)]
-    private ?string $firstName = null;
+    private ?string $firstName = '';
 
     #[ORM\Column(length: 255)]
-    private ?string $career = null;
+    private ?string $career = '';
 
     #[ORM\Column(type: Types::ARRAY, nullable: true)]
     private array $skillsProfil = [];
