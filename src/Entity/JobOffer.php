@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\JobOfferRepository;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: JobOfferRepository::class)]
@@ -13,9 +14,8 @@ class JobOffer
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\ManyToOne]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?company $companyName = null;
+    #[ORM\ManyToOne(inversedBy: 'jobOffers')]
+    private ?Company $company = null;
 
     #[ORM\Column(length: 255)]
     private ?string $offerName = null;
@@ -23,22 +23,22 @@ class JobOffer
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $descriptionOffer = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $offerSkills = null;
+    #[ORM\Column(type: Types::ARRAY, nullable: true)]
+    private array $offerSkill = [];
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getCompanyName(): ?company
+    public function getCompany(): ?Company
     {
-        return $this->companyName;
+        return $this->company;
     }
 
-    public function setCompanyName(?company $companyName): self
+    public function setCompany(?Company $company): self
     {
-        $this->companyName = $companyName;
+        $this->company = $company;
 
         return $this;
     }
@@ -67,14 +67,14 @@ class JobOffer
         return $this;
     }
 
-    public function getOfferSkills(): ?string
+    public function getOfferSkill(): array
     {
-        return $this->offerSkills;
+        return $this->offerSkill;
     }
 
-    public function setOfferSkills(string $offerSkills): self
+    public function setOfferSkill(?array $offerSkill): self
     {
-        $this->offerSkills = $offerSkills;
+        $this->offerSkill = $offerSkill;
 
         return $this;
     }
