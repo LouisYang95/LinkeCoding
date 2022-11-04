@@ -3,6 +3,9 @@
 namespace App\Controller;
 
 use App\Entity\JobOffer;
+use App\Entity\Company;
+use App\Form\OffreType;
+
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
@@ -16,9 +19,21 @@ class OfferController extends AbstractController
     public function index(ManagerRegistry $doctrine): Response
     {
         $offers = $doctrine->getRepository(JobOffer::class)->findAll();
+        $companies = $doctrine->getRepository(Company::class)->findAll();
+        // foreach($companies as $company){
+        //     foreach($offers as $offer){
+        //         $companyId = $offer->getCompanyName();
+        //         if((int)$companyId == (int)$company->getId()){
+        //             $offerCompany = $company->getCompanyName;
+        //         }
+        //     }
+        // }
         return $this->render('offer/index.html.twig', [
             'offers' => $offers,
+            // 'company' => $offerCompany
         ]);
+
+
     }
 
     #[Route('/offer/new', name: 'new_offer')]
@@ -37,7 +52,7 @@ class OfferController extends AbstractController
         }
 
 
-        return $this->renderForm('profil/addOffre.html.twig', [
+        return $this->renderForm('offer/addOffre.html.twig', [
             'offreForm' => $offerForm,
             "controller_name" => " Ajouter un nouvelle offre",
         ]);

@@ -18,7 +18,11 @@ class CompanyController extends AbstractController
     #[Route('/company', name: 'company')]
     public function show(ManagerRegistry $doctrine): Response
     {
-        $company = $doctrine->getRepository(Company::class)->findAll();
+        $company = $doctrine->getRepository(Company::class)->findAll(
+            //sort by desc
+            ['id' => 'DESC']
+
+        );
         // dd($company);
         return $this->render('company/homeCompany.html.twig', [
             'companies' => $company,

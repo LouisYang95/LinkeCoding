@@ -16,7 +16,7 @@ class ProfilFixture extends Fixture
         $profil->setFirstName("Adrien");
         $profil->setCareer("Développeur Web");
         $profil->setSkillsProfil(["PHP", "Symfony", "HTML", "CSS", "JavaScript", "MySQL"]);
-        
+        $profil->setProfilSkill('java');
         $manager->persist($profil);
         $manager->flush();
     }

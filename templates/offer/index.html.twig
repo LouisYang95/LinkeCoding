@@ -9,16 +9,25 @@
 </style>
 
 <div class="example-wrapper">
+    <h1 >Hello ! There is a list of job : </h1>
+
     <ul class="list-group">
         
         {% for offer in offers%}
         <li class="list-group-item d-flex justify-content-between align-items-start">
             <div class="ms-2 me-auto" >
-                <div class="fw-bold"> {{offer.offerName}} </div>
-                {{offer.descriptionOffer}}
+                <h2 class="fw-bold"> {{offer.offerName}} </h2>
+                
+                <div class="fw-bold">{{offer.descriptionOffer}}</div>
+                
+                <div class="fw-bold"> Skill : {{offer.skillOffer}} </div>
             </div>
         </li>
         {% endfor%}
+        <div class="containerLastPart">
+            <a href='/offer/new'> <button class="btn btn-info"> Create an offer</button> </a>
+            <a href='/'> <button class="btn btn-success"> Back to home </button> </a>
+        </div>
     <ul>
 </div>
 {% endblock %}

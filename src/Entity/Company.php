@@ -70,7 +70,7 @@ class Company
     {
         if (!$this->jobOffers->contains($jobOffer)) {
             $this->jobOffers->add($jobOffer);
-            $jobOffer->setCompany($this);
+            $jobOffer->setCompanyName($this);
         }
 
         return $this;
@@ -80,8 +80,8 @@ class Company
     {
         if ($this->jobOffers->removeElement($jobOffer)) {
             // set the owning side to null (unless already changed)
-            if ($jobOffer->getCompany() === $this) {
-                $jobOffer->setCompany(null);
+            if ($jobOffer->getCompanyName() === $this) {
+                $jobOffer->setCompanyName(null);
             }
         }
 

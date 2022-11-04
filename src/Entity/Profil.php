@@ -26,6 +26,9 @@ class Profil
     #[ORM\Column(type: Types::ARRAY, nullable: true)]
     private array $skillsProfil = [];
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $profilSkill = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -75,6 +78,18 @@ class Profil
     public function setSkillsProfil(?array $skillsProfil): self
     {
         $this->skillsProfil = $skillsProfil;
+
+        return $this;
+    }
+
+    public function getProfilSkill(): ?string
+    {
+        return $this->profilSkill;
+    }
+
+    public function setProfilSkill(?string $profilSkill): self
+    {
+        $this->profilSkill = $profilSkill;
 
         return $this;
     }

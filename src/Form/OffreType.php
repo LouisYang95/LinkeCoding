@@ -6,6 +6,7 @@ use App\Entity\JobOffer;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 class OffreType extends AbstractType
@@ -16,7 +17,19 @@ class OffreType extends AbstractType
 
             ->add('offerName')
             ->add('descriptionOffer')
-            ->add('offerSkills')
+            ->add('skillOffer', ChoiceType::class,[
+                'choices' => [
+                    'HTML' => 'HTML',
+                    'CSS' => 'CSS',
+                    'JavaScript' => 'JavaScript',
+                    'ReactJs' => 'ReactJS',
+                    'Flutter' => 'Flutter',
+                    'Symfony' => 'Symfony',
+                    'Laravel' => 'Laravel',
+                    'SwiftUi' => 'SwiftUi',
+                    'PHP' => 'PHP',
+                ]
+            ])
             ->add("submit", SubmitType::class);
     }
 
